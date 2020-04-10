@@ -74,7 +74,7 @@ def predict_image_from_bytes(bytes):
             <div>
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="""
-    responsestring = responsestring + str(int(losses[0].item())) + """ aria-valuemin="0" aria-valuemax="100" style="width:70%">
+    responsestring = responsestring + str(int(losses[0].item())) + """ aria-valuemin="0" aria-valuemax="100">
                         """
     responsestring = responsestring + str(learn.data.classes[0])
     responsestring = responsestring + """
@@ -82,7 +82,7 @@ def predict_image_from_bytes(bytes):
                     </div>
                     <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="""
-    responsestring = responsestring + str(losses[1]*100) + """ aria-valuemin="0" aria-valuemax="100" style="width:70%">
+    responsestring = responsestring + str(losses[1]*100) + """ aria-valuemin="0" aria-valuemax="100">
                         """
     responsestring = responsestring + str(learn.data.classes[1])
     responsestring = responsestring + """
@@ -93,7 +93,7 @@ def predict_image_from_bytes(bytes):
                     </div>
                     <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="""
-    responsestring = responsestring + str(losses[2]*100) + """ aria-valuemin="0" aria-valuemax="100" style="width:70%">
+    responsestring = responsestring + str(losses[2]*100) + """ aria-valuemin="0" aria-valuemax="100">
                         """
     responsestring = responsestring + str(learn.data.classes[2])
     responsestring = responsestring + """
@@ -104,7 +104,7 @@ def predict_image_from_bytes(bytes):
                     </div>
                     <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="""
-    responsestring = responsestring + str(losses[3]*100) + """ aria-valuemin="0" aria-valuemax="100" style="width:70%">
+    responsestring = responsestring + str(losses[3]*100) + """ aria-valuemin="0" aria-valuemax="100">
                         """
     responsestring = responsestring + str(learn.data.classes[3])
     responsestring = responsestring + """
@@ -115,7 +115,7 @@ def predict_image_from_bytes(bytes):
                     </div>
                     <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="""
-    responsestring = responsestring + str(losses[4]*100) + """ aria-valuemin="0" aria-valuemax="100" style="width:70%">
+    responsestring = responsestring + str(losses[4]*100) + """ aria-valuemin="0" aria-valuemax="100">
                         """
     responsestring = responsestring + str(learn.data.classes[4])
     responsestring = responsestring + """
@@ -126,7 +126,7 @@ def predict_image_from_bytes(bytes):
                     </div>
                     <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="""
-    responsestring = responsestring + str(losses[5]*100) + """ aria-valuemin="0" aria-valuemax="100" style="width:70%">
+    responsestring = responsestring + str(losses[5]*100) + """ aria-valuemin="0" aria-valuemax="100">
                         """
     responsestring = responsestring + str(learn.data.classes[5])
     responsestring = responsestring + """
@@ -137,7 +137,7 @@ def predict_image_from_bytes(bytes):
                     </div>
                     <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="""
-    responsestring = responsestring + str(losses[6]*100) + """ aria-valuemin="0" aria-valuemax="100" style="width:70%">
+    responsestring = responsestring + str(losses[6]*100) + """ aria-valuemin="0" aria-valuemax="100">
                         """
     responsestring = responsestring + str(learn.data.classes[6])
     responsestring = responsestring + """
@@ -148,7 +148,7 @@ def predict_image_from_bytes(bytes):
                     </div>
                     <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="""
-    responsestring = responsestring + str(losses[7]*100) + """ aria-valuemin="0" aria-valuemax="100" style="width:70%">
+    responsestring = responsestring + str(losses[7]*100) + """ aria-valuemin="0" aria-valuemax="100">
                         """
     responsestring = responsestring + str(learn.data.classes[7])
     responsestring = responsestring + """
@@ -159,7 +159,7 @@ def predict_image_from_bytes(bytes):
                     </div>
                     <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="""
-    responsestring = responsestring + str(losses[8]*100) + """ aria-valuemin="0" aria-valuemax="100" style="width:70%">
+    responsestring = responsestring + str(losses[8]*100) + """ aria-valuemin="0" aria-valuemax="100">
                         """
     responsestring = responsestring + str(learn.data.classes[8])
     responsestring = responsestring + """
@@ -170,7 +170,7 @@ def predict_image_from_bytes(bytes):
                     </div>
                     <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="""
-    responsestring = responsestring + str(losses[9]*100) + """ aria-valuemin="0" aria-valuemax="100" style="width:70%">
+    responsestring = responsestring + str(losses[9]*100) + """ aria-valuemin="0" aria-valuemax="100">
                         """
     responsestring = responsestring + str(learn.data.classes[9])
     responsestring = responsestring + """
