@@ -59,7 +59,7 @@ async def analyze(request):
 def predict_image_from_bytes(bytes):
     img = open_image(BytesIO(bytes))
     x,y,losses = learn.predict(img)
-    results = zip(learn.data.classes, map(round, (map(float, losses*100))))
+    results = learn.data.classes, map(round, (map(float, losses*100)))
     responsestring = """<!DOCTYPE html>
         <html lang="en">
         <head>
