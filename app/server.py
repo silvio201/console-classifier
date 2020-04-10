@@ -11,14 +11,18 @@ from starlette.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
 from starlette.routing import Route
 
-export_file_url = 'https://drive.google.com/u/0/uc?id=1r9L5ojNKHGOq2w8kVX9FSj2ffue-zA8y&export=download'
+export_file_url = 'https://drive.google.com/uc?export=download&id=1U6vmC0eY_ejOvFvHIjXUsvI7Jsn31SRd'
 export_file_name = 'export.pkl'
 
-classes = ['NintendoSwitch', 'NintendoWiiU', 'NintendoWii', 'NintendoGamecube', 'Xbox360', 'XboxOne', 'Playstation1', 'Playstation2', 'Playstation3', 'Playstation4']
+classes = ['cataract', 'glaucoma', 'normal', 'retina_disease']
 path = Path(__file__).parent
+
+templates = Jinja2Templates(directory=str('app/templates'))
 
 app = Starlette()
 app.add_middleware(CORSMiddleware, allow_origins=['*'], allow_headers=['X-Requested-With', 'Content-Type'])
+app.mount('/static', StaticFiles(directory='app/static'))
+app.mount('/templates', StaticFiles(directory='app/templates'))
 
 async def download_file(url, dest):
     if dest.exists(): return
@@ -27,6 +31,7 @@ async def download_file(url, dest):
             data = await response.read()
             with open(dest, 'wb') as f:
                 f.write(data)
+
 
 async def setup_learner():
     await download_file(export_file_url, path / export_file_name)
@@ -40,6 +45,7 @@ async def setup_learner():
             raise RuntimeError(message)
         else:
             raise
+
 
 asyncio.set_event_loop(asyncio.new_event_loop())
 loop = asyncio.get_event_loop()
@@ -56,14 +62,14 @@ async def analyze(request):
     return predict_image_from_bytes(bytes)
 
 
-# @app.route("/classify-url", methods=["GET"])
-# async def classify_url(request):
-#     bytes = await get_bytes(request.query_params["url"])
-#     context = {
-#         "request": request, 
-#         "data": predict_image_from_bytes(bytes)
-#     }
-#     return templates.TemplateResponse('show_predictions.html', context=context)
+@app.route("/classify-url", methods=["GET"])
+async def classify_url(request):
+    bytes = await get_bytes(request.query_params["url"])
+    context = {
+        "request": request, 
+        "data": predict_image_from_bytes(bytes)
+    }
+    return templates.TemplateResponse('show_predictions.html', context=context)
 
 
 def predict_image_from_bytes(bytes):
@@ -77,12 +83,12 @@ def predict_image_from_bytes(bytes):
         "results": [(label, prob) for label, prob in zip(learn.data.classes, map(round, (map(float, losses*100))))]   
     })
 
-# @app.route('/')
-# async def homepage(request):
-#     html_file = path / 'templates' / 'index.html'
-#     return templates.TemplateResponse("index.html", {"request": request})
+@app.route('/')
+async def homepage(request):
+    html_file = path / 'templates' / 'index.html'
+    return templates.TemplateResponse("index.html", {"request": request})
 
-@app.route("/")
+#@app.route("/")
 def form(request):
     return HTMLResponse(
         """
@@ -91,27 +97,69 @@ def form(request):
         <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>Console Classifier</title>
+            <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+            <!-- jQuery library -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+            <!-- Popper JS -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+            <!-- Latest compiled JavaScript -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+            <title>Detect Eye Diseases</title>
         </head>
         <body>
-            <div>
-                <form action="/analyze" method="post" enctype="multipart/form-data">
-                    <div>
-                        Select image to upload:
-                        <input type="file" name="file">
-                        <input type="submit" value="Upload and Analyze Image">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2">
                     </div>
-                </form>
-
+                    <div class="col-md-8">
+                        <h1>Detect Eye Diseases with Deep Learning Technology</h1>
+                        <h2>This example is based on the fast.ai deep learning framework: <a href="https://www.fast.ai/">https://www.fast.ai/</a></h2>
+                        <p><strong>Image classifier that detects different categories of eye diseases:<strong>
+                            <ul class="list-group">
+                                <li class="list-group-item">Normal Eye</li>
+                                <li class="list-group-item">Glaucoma</li>
+                                <li class="list-group-item">Retina Disease</li>
+                                <li class="list-group-item">Cataract</li>
+                            </ul>
+                        </p>
+                        <form action="/upload" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                Select image to upload:
+                                <input type="file" name="file" class="input-sm">
+                                <input type="submit" value="Upload and Analyze Image" class="btn btn-primary">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-8">                        
+                        Or submit a URL:                        
+                        <form action="/classify-url" method="get">
+                            <div class="form-group">
+                                <input type="url" name="url" class="input-sm">
+                                <input type="submit" value="Fetch and Analyze image" class="btn btn-primary">
+                            </div>
+                        </form>                        
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
             </div>
         </body>
         </html>
     """)
 
 
-# @app.route("/form")
-# def redirect_to_homepage(request):
-#     return RedirectResponse("/")
+@app.route("/form")
+def redirect_to_homepage(request):
+    return RedirectResponse("/")
 
 # routes = [
 #     Route("/", endpoint=homepage),
