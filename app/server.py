@@ -88,6 +88,94 @@ def predict_image_from_bytes(bytes):
     responsestring = responsestring + """
                         </div>
                     </div>"""
+    responsestring = responsestring + """
+                        </div>
+                    </div>
+                    <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="""
+    responsestring = responsestring + str(losses[2]*100) + """ aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                        """
+    responsestring = responsestring + str(learn.data.classes[2])
+    responsestring = responsestring + """
+                        </div>
+                    </div>"""
+    responsestring = responsestring + """
+                        </div>
+                    </div>
+                    <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="""
+    responsestring = responsestring + str(losses[3]*100) + """ aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                        """
+    responsestring = responsestring + str(learn.data.classes[3])
+    responsestring = responsestring + """
+                        </div>
+                    </div>"""
+    responsestring = responsestring + """
+                        </div>
+                    </div>
+                    <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="""
+    responsestring = responsestring + str(losses[4]*100) + """ aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                        """
+    responsestring = responsestring + str(learn.data.classes[4])
+    responsestring = responsestring + """
+                        </div>
+                    </div>"""
+    responsestring = responsestring + """
+                        </div>
+                    </div>
+                    <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="""
+    responsestring = responsestring + str(losses[5]*100) + """ aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                        """
+    responsestring = responsestring + str(learn.data.classes[5])
+    responsestring = responsestring + """
+                        </div>
+                    </div>"""
+    responsestring = responsestring + """
+                        </div>
+                    </div>
+                    <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="""
+    responsestring = responsestring + str(losses[6]*100) + """ aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                        """
+    responsestring = responsestring + str(learn.data.classes[6])
+    responsestring = responsestring + """
+                        </div>
+                    </div>"""
+    responsestring = responsestring + """
+                        </div>
+                    </div>
+                    <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="""
+    responsestring = responsestring + str(losses[7]*100) + """ aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                        """
+    responsestring = responsestring + str(learn.data.classes[7])
+    responsestring = responsestring + """
+                        </div>
+                    </div>"""
+    responsestring = responsestring + """
+                        </div>
+                    </div>
+                    <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="""
+    responsestring = responsestring + str(losses[8]*100) + """ aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                        """
+    responsestring = responsestring + str(learn.data.classes[8])
+    responsestring = responsestring + """
+                        </div>
+                    </div>"""
+    responsestring = responsestring + """
+                        </div>
+                    </div>
+                    <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="""
+    responsestring = responsestring + str(losses[9]*100) + """ aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                        """
+    responsestring = responsestring + str(learn.data.classes[9])
+    responsestring = responsestring + """
+                        </div>
+                    </div>"""
     responsestring = responsestring + """</div>           
         </body>
         </html>
