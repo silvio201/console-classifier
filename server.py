@@ -74,7 +74,7 @@ def predict_image_from_bytes(bytes):
         <body>
             <h1>Results</h1>
             <div>
-                <p>"""learn.data.classes[0]"""</p>
+                <p>"""str(learn.data.classes[0])"""</p>
             </div>            
         </body>
         </html>
