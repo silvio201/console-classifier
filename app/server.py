@@ -11,7 +11,7 @@ from starlette.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
 from starlette.routing import Route
 
-export_file_url = 'https://drive.google.com/file/d/1r9L5ojNKHGOq2w8kVX9FSj2ffue-zA8y/view?usp=sharing'
+export_file_url = 'https://drive.google.com/u/0/uc?id=1r9L5ojNKHGOq2w8kVX9FSj2ffue-zA8y&export=download'
 export_file_name = 'export.pkl'
 
 classes = ['NintendoSwitch', 'NintendoWiiU', 'NintendoWii', 'NintendoGamecube', 'Xbox360', 'XboxOne', 'Playstation1', 'Playstation2', 'Playstation3', 'Playstation4']
