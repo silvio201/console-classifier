@@ -59,13 +59,31 @@ async def analyze(request):
 def predict_image_from_bytes(bytes):
     img = open_image(BytesIO(bytes))
     x,y,losses = learn.predict(img)   
-    return JSONResponse({
-        "predictions": sorted(
-            zip(learn.data.classes, map(float, losses)),
-            key=lambda p: p[0]
-        ),
-        "results": [(label, prob) for label, prob in zip(learn.data.classes, map(round, (map(float, losses*100))))]   
-    })
+    return HTMLResponse(
+        """
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Console Classifier</title>
+        </head>
+        <body>
+            <h1>Results</h1>
+            <div>
+                <p>test</p>
+            </div>            
+        </body>
+        </html>
+        """
+    )
+    # return JSONResponse({
+    #     "predictions": sorted(
+    #         zip(learn.data.classes, map(float, losses)),
+    #         key=lambda p: p[0]
+    #     ),
+    #     "results": [(label, prob) for label, prob in zip(learn.data.classes, map(round, (map(float, losses*100))))]   
+    # })
 
 
 @app.route("/")
@@ -84,7 +102,7 @@ def form(request):
             <div>
                 <form action="/analyze" method="post" enctype="multipart/form-data">
                     <div>
-                        Select image to upload:
+                        Select image to upload: <br>
                         <input type="file" name="file"><br>
                         <input type="submit" value="Upload and Analyze Image">
                     </div>
