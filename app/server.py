@@ -17,12 +17,12 @@ export_file_name = 'export.pkl'
 classes = ['NintendoSwitch', 'NintendoWiiU', 'NintendoWii', 'NintendoGamecube', 'Xbox360', 'XboxOne', 'Playstation1', 'Playstation2', 'Playstation3', 'Playstation4']
 path = Path(__file__).parent
 
-templates = Jinja2Templates(directory=str('app/templates'))
+# templates = Jinja2Templates(directory=str('app/templates'))
 
 app = Starlette()
 app.add_middleware(CORSMiddleware, allow_origins=['*'], allow_headers=['X-Requested-With', 'Content-Type'])
-app.mount('/static', StaticFiles(directory='app/static'))
-app.mount('/templates', StaticFiles(directory='app/templates'))
+# app.mount('/static', StaticFiles(directory='app/static'))
+# app.mount('/templates', StaticFiles(directory='app/templates'))
 
 async def download_file(url, dest):
     if dest.exists(): return
@@ -62,14 +62,14 @@ async def analyze(request):
     return predict_image_from_bytes(bytes)
 
 
-@app.route("/classify-url", methods=["GET"])
-async def classify_url(request):
-    bytes = await get_bytes(request.query_params["url"])
-    context = {
-        "request": request, 
-        "data": predict_image_from_bytes(bytes)
-    }
-    return templates.TemplateResponse('show_predictions.html', context=context)
+# @app.route("/classify-url", methods=["GET"])
+# async def classify_url(request):
+#     bytes = await get_bytes(request.query_params["url"])
+#     context = {
+#         "request": request, 
+#         "data": predict_image_from_bytes(bytes)
+#     }
+#     return templates.TemplateResponse('show_predictions.html', context=context)
 
 
 def predict_image_from_bytes(bytes):
@@ -83,10 +83,6 @@ def predict_image_from_bytes(bytes):
         "results": [(label, prob) for label, prob in zip(learn.data.classes, map(round, (map(float, losses*100))))]   
     })
 
-#@app.route('/')
-async def homepage(request):
-    html_file = path / 'templates' / 'index.html'
-    return templates.TemplateResponse("index.html", {"request": request})
 
 @app.route("/")
 def form(request):
