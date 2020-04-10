@@ -1,1 +1,1 @@
-app/server.py
+./app/server.py

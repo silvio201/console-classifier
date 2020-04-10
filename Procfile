@@ -2,4 +2,4 @@ heroku buildpacks:clear
 heroku buildpacks:add --index heroku/python
 heroku ps:scale web=0
 heroku ps:scale web=1
-web: gunicorn gettingstarted.wsgi --log-file -
+web: gunicorn -w 1 -k uvicorn.workers.UvicornWorker --log-level warning app:server
