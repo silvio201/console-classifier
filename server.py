@@ -55,15 +55,6 @@ async def analyze(request):
     return predict_image_from_bytes(bytes)
 
 
-# @app.route("/classify-url", methods=["GET"])
-# async def classify_url(request):
-#     bytes = await get_bytes(request.query_params["url"])
-#     context = {
-#         "request": request, 
-#         "data": predict_image_from_bytes(bytes)
-#     }
-#     return templates.TemplateResponse('show_predictions.html', context=context)
-
 
 def predict_image_from_bytes(bytes):
     img = open_image(BytesIO(bytes))
@@ -89,6 +80,7 @@ def form(request):
             <title>Console Classifier</title>
         </head>
         <body>
+            <h1>Console Classifier by Felix Anzengruber</h1>
             <div>
                 <form action="/analyze" method="post" enctype="multipart/form-data">
                     <div>
