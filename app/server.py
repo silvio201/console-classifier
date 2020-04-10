@@ -59,6 +59,7 @@ async def analyze(request):
 def predict_image_from_bytes(bytes):
     img = open_image(BytesIO(bytes))
     x,y,losses = learn.predict(img)
+    results = (label, prob) for label, prob in zip(learn.data.classes, map(round, (map(float, losses*100))))
     responsestring = """<!DOCTYPE html>
         <html lang="en">
         <head>
@@ -74,7 +75,7 @@ def predict_image_from_bytes(bytes):
             <h1>Results</h1>
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" style="width:"""
-    responsestring = responsestring + str(int(losses[0].item())) + """%" aria-valuemin="0" aria-valuemax="100">
+    responsestring = responsestring + results[0][1] + """%" aria-valuemin="0" aria-valuemax="100">
                         """
     responsestring = responsestring + str(learn.data.classes[0])
     responsestring = responsestring + """
