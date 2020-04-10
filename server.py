@@ -17,12 +17,8 @@ export_file_name = 'export.pkl'
 classes = ['NintendoSwitch', 'NintendoWiiU', 'NintendoWii', 'NintendoGamecube', 'Xbox360', 'XboxOne', 'Playstation1', 'Playstation2', 'Playstation3', 'Playstation4']
 path = Path(__file__).parent
 
-# templates = Jinja2Templates(directory=str('app/templates'))
-
 app = Starlette()
 app.add_middleware(CORSMiddleware, allow_origins=['*'], allow_headers=['X-Requested-With', 'Content-Type'])
-# app.mount('/static', StaticFiles(directory='app/static'))
-# app.mount('/templates', StaticFiles(directory='app/templates'))
 
 async def download_file(url, dest):
     if dest.exists(): return
@@ -51,9 +47,6 @@ asyncio.set_event_loop(asyncio.new_event_loop())
 loop = asyncio.get_event_loop()
 tasks = [asyncio.ensure_future(setup_learner())]
 learn = loop.run_until_complete(asyncio.gather(*tasks))[0]
-#loop.close()
-
-#learn = setup_learner()
 
 @app.route("/analyze", methods=["POST"])
 async def analyze(request):
@@ -98,29 +91,16 @@ def form(request):
         <body>
             <div>
                 <form action="/analyze" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
+                    <div>
                         Select image to upload:
-                        <input type="file" name="file" class="input-sm">
-                        <input type="submit" value="Upload and Analyze Image" class="btn btn-primary">
+                        <input type="file" name="file">
+                        <input type="submit" value="Upload and Analyze Image">
                     </div>
                 </form>
             </div>
         </body>
         </html>
     """)
-
-
-@app.route("/form")
-def redirect_to_homepage(request):
-    return RedirectResponse("/")
-
-# routes = [
-#     Route("/", endpoint=homepage),
-#     Route("/upload", endpoint=upload, methods=["POST"]),
-#     Route("/classify-url", endpoint=classify_url, methods=["GET"]),
-#     Route("/form", endpoint=redirect_to_homepage),
-# ]
-
 
 
 if __name__ == '__main__':
