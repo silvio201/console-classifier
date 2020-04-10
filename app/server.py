@@ -85,7 +85,7 @@ def form(request):
                 <form action="/analyze" method="post" enctype="multipart/form-data">
                     <div>
                         Select image to upload:
-                        <input type="file" name="file">
+                        <input type="file" name="file"><br>
                         <input type="submit" value="Upload and Analyze Image">
                     </div>
                 </form>
