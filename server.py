@@ -74,11 +74,7 @@ def predict_image_from_bytes(bytes):
         <body>
             <h1>Results</h1>
             <div>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="""losses[0]*100""" aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                        """losses[0]*100"""
-                    </div>
-                </div>
+                <p>"""learn.data.classes[0]"""</p>
             </div>            
         </body>
         </html>
@@ -91,6 +87,12 @@ def predict_image_from_bytes(bytes):
     #     ),
     #     "results": [(label, prob) for label, prob in zip(learn.data.classes, map(round, (map(float, losses*100))))]   
     # })
+
+    # <div class="progress">
+    #                 <div class="progress-bar" role="progressbar" aria-valuenow="""losses[0]*100""" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+    #                     """losses[0]*100"""
+    #                 </div>
+    #             </div>
 
 
 @app.route("/")
