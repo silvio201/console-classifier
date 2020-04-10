@@ -58,10 +58,8 @@ async def analyze(request):
 
 def predict_image_from_bytes(bytes):
     img = open_image(BytesIO(bytes))
-    x,y,losses = learn.predict(img)   
-    return HTMLResponse(
-        """
-        <!DOCTYPE html>
+    x,y,losses = learn.predict(img)
+    responsestring = """<!DOCTYPE html>
         <html lang="en">
         <head>
             <meta charset="utf-8">
@@ -74,11 +72,16 @@ def predict_image_from_bytes(bytes):
         <body>
             <h1>Results</h1>
             <div>
-                <p>"""str(learn.data.classes[0])"""</p>
+                <p>"""
+    responsestring = responsestring + str(learn.data.classes[0])
+    responsestring = responsestring + """</p>
             </div>            
         </body>
         </html>
         """
+    
+    return HTMLResponse(
+        responsestring
     )
     # return JSONResponse({
     #     "predictions": sorted(
