@@ -66,12 +66,19 @@ def predict_image_from_bytes(bytes):
         <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
             <title>Console Classifier</title>
         </head>
         <body>
             <h1>Results</h1>
             <div>
-                <p>test</p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="""losses[0]*100""" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                        """losses[0]*100"""
+                    </div>
+                </div>
             </div>            
         </body>
         </html>
