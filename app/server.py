@@ -11,10 +11,10 @@ from starlette.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
 from starlette.routing import Route
 
-export_file_url = 'https://drive.google.com/uc?export=download&id=1U6vmC0eY_ejOvFvHIjXUsvI7Jsn31SRd'
+export_file_url = 'https://drive.google.com/u/0/uc?id=1r9L5ojNKHGOq2w8kVX9FSj2ffue-zA8y&export=download'
 export_file_name = 'export.pkl'
 
-classes = ['cataract', 'glaucoma', 'normal', 'retina_disease']
+classes = ['NintendoSwitch', 'NintendoWiiU', 'NintendoWii', 'NintendoGamecube', 'Xbox360', 'XboxOne', 'Playstation1', 'Playstation2', 'Playstation3', 'Playstation4']
 path = Path(__file__).parent
 
 templates = Jinja2Templates(directory=str('app/templates'))
@@ -83,12 +83,12 @@ def predict_image_from_bytes(bytes):
         "results": [(label, prob) for label, prob in zip(learn.data.classes, map(round, (map(float, losses*100))))]   
     })
 
-@app.route('/')
+#@app.route('/')
 async def homepage(request):
     html_file = path / 'templates' / 'index.html'
     return templates.TemplateResponse("index.html", {"request": request})
 
-#@app.route("/")
+@app.route("/")
 def form(request):
     return HTMLResponse(
         """
@@ -125,7 +125,7 @@ def form(request):
                                 <li class="list-group-item">Cataract</li>
                             </ul>
                         </p>
-                        <form action="/upload" method="post" enctype="multipart/form-data">
+                        <form action="/analyze" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 Select image to upload:
                                 <input type="file" name="file" class="input-sm">
