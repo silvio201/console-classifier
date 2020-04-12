@@ -75,9 +75,9 @@ def predict_image_from_bytes(bytes):
             <h1>Results</h1>
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" style="width:"""
-    responsestring = responsestring + results[0][1] + """%" aria-valuemin="0" aria-valuemax="100">
+    responsestring = responsestring + results[1][1] + """%" aria-valuemin="0" aria-valuemax="100">
                         """
-    responsestring = responsestring + str(learn.data.classes[0])
+    responsestring = responsestring + str(results[0][1])
     responsestring = responsestring + """
                         </div>
                     </div>
