@@ -60,7 +60,7 @@ def predict_image_from_bytes(bytes):
     img = open_image(BytesIO(bytes))
     x,y,losses = learn.predict(img)
     classes = learn.data.classes
-    # map(round, (map(float, losses*100)))
+    results = list(map(round, (map(float, losses*100))))
     responsestring = """<!DOCTYPE html>
         <html lang="en">
         <head>
@@ -77,7 +77,7 @@ def predict_image_from_bytes(bytes):
     for i in range(10):
         responsestring = responsestring + """<div class="progress">
                     <div class="progress-bar" role="progressbar" style="width:"""
-        responsestring = responsestring + "50" + """%" aria-valuemin="0" aria-valuemax="100">
+        responsestring = responsestring + results[i] + """%" aria-valuemin="0" aria-valuemax="100">
                         """
         responsestring = responsestring + str(classes[i])
         responsestring = responsestring + """
