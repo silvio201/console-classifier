@@ -83,7 +83,10 @@ def predict_image_from_bytes(bytes):
         responsestring = responsestring + """
                         </div>
                     </div>"""
-    responsestring = responsestring + """</div>           
+    responsestring = responsestring + """</div>   
+            <form action="/">
+                <input type="submit" value="Analyze another picture">
+            </form>        
         </body>
         </html>
         """
