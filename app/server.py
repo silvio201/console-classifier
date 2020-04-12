@@ -73,7 +73,7 @@ def predict_image_from_bytes(bytes):
         </head>
         <body>
         <div>
-            <h1>Results</h1>"""
+            <h1 class="display-1">Results</h1>"""
     for i in range(10):
         responsestring = responsestring + """<div class="progress">
                     <div class="progress-bar" role="progressbar" style="width:"""
@@ -114,16 +114,19 @@ def form(request):
         <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
             <title>Console Classifier</title>
         </head>
         <body>
-            <h1>Console Classifier by Felix Anzengruber</h1>
+            <h1 class="display-1">Console Classifier by Felix Anzengruber</h1>
             <div>
                 <form action="/analyze" method="post" enctype="multipart/form-data">
-                    <div>
-                        Select image to upload: <br>
-                        <input type="file" name="file"><br>
-                        <input type="submit" value="Upload and Analyze Image">
+                    <div class="form-group">
+                        <label for="fileupload">Select image to upload:</label>
+                        <input class="form-control" id="fileupload" type="file" name="file"><br>
+                        <input class="btn btn-primary" type="submit" value="Upload and Analyze Image">
                     </div>
                 </form>
             </div>
