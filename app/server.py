@@ -59,7 +59,8 @@ async def analyze(request):
 def predict_image_from_bytes(bytes):
     img = open_image(BytesIO(bytes))
     x,y,losses = learn.predict(img)
-    results = learn.data.classes, map(round, (map(float, losses*100)))
+    classes = learn.data.classes
+    # map(round, (map(float, losses*100)))
     responsestring = """<!DOCTYPE html>
         <html lang="en">
         <head>
@@ -72,106 +73,14 @@ def predict_image_from_bytes(bytes):
         </head>
         <body>
         <div>
-            <h1>Results</h1>
-                <div class="progress">
+            <h1>Results</h1>"""
+    for i in range(10):
+        responsestring = responsestring + """<div class="progress">
                     <div class="progress-bar" role="progressbar" style="width:"""
-    responsestring = responsestring + results[1][1] + """%" aria-valuemin="0" aria-valuemax="100">
+        responsestring = responsestring + "50" + """%" aria-valuemin="0" aria-valuemax="100">
                         """
-    responsestring = responsestring + str(results[0][1])
-    responsestring = responsestring + """
-                        </div>
-                    </div>
-                    <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width:"""
-    responsestring = responsestring + str(int(losses[1].item())) + """%" aria-valuemin="0" aria-valuemax="100">
-                        """
-    responsestring = responsestring + str(learn.data.classes[1])
-    responsestring = responsestring + """
-                        </div>
-                    </div>
-                    <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width:"""
-    responsestring = responsestring + str(int(losses[2].item())) + """%" aria-valuemin="0" aria-valuemax="100">
-                        """
-    responsestring = responsestring + str(learn.data.classes[2])
-    responsestring = responsestring + """
-                        </div>
-                    </div>"""
-    responsestring = responsestring + """
-                        </div>
-                    </div>
-                    <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width:"""
-    responsestring = responsestring + str(int(losses[3].item())) + """%" aria-valuemin="0" aria-valuemax="100">
-                        """
-    responsestring = responsestring + str(learn.data.classes[3])
-    responsestring = responsestring + """
-                        </div>
-                    </div>"""
-    responsestring = responsestring + """
-                        </div>
-                    </div>
-                    <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width:"""
-    responsestring = responsestring + str(int(losses[4].item())) + """%" aria-valuemin="0" aria-valuemax="100">
-                        """
-    responsestring = responsestring + str(learn.data.classes[4])
-    responsestring = responsestring + """
-                        </div>
-                    </div>"""
-    responsestring = responsestring + """
-                        </div>
-                    </div>
-                    <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width:"""
-    responsestring = responsestring + str(int(losses[5].item())) + """%" aria-valuemin="0" aria-valuemax="100">
-                        """
-    responsestring = responsestring + str(learn.data.classes[5])
-    responsestring = responsestring + """
-                        </div>
-                    </div>"""
-    responsestring = responsestring + """
-                        </div>
-                    </div>
-                    <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width:"""
-    responsestring = responsestring + str(int(losses[6].item())) + """%" aria-valuemin="0" aria-valuemax="100">
-                        """
-    responsestring = responsestring + str(learn.data.classes[6])
-    responsestring = responsestring + """
-                        </div>
-                    </div>"""
-    responsestring = responsestring + """
-                        </div>
-                    </div>
-                    <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width:"""
-    responsestring = responsestring + str(int(losses[7].item())) + """%" aria-valuemin="0" aria-valuemax="100">
-                        """
-    responsestring = responsestring + str(learn.data.classes[7])
-    responsestring = responsestring + """
-                        </div>
-                    </div>"""
-    responsestring = responsestring + """
-                        </div>
-                    </div>
-                    <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width:"""
-    responsestring = responsestring + str(int(losses[8].item())) + """%" aria-valuemin="0" aria-valuemax="100">
-                        """
-    responsestring = responsestring + str(learn.data.classes[8])
-    responsestring = responsestring + """
-                        </div>
-                    </div>"""
-    responsestring = responsestring + """
-                        </div>
-                    </div>
-                    <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width:"""
-    responsestring = responsestring + str(int(losses[9].item())) + """%" aria-valuemin="0" aria-valuemax="100">
-                        """
-    responsestring = responsestring + str(learn.data.classes[9])
-    responsestring = responsestring + """
+        responsestring = responsestring + str(classes[i])
+        responsestring = responsestring + """
                         </div>
                     </div>"""
     responsestring = responsestring + """</div>           
