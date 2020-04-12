@@ -85,7 +85,7 @@ def predict_image_from_bytes(bytes):
                     </div>"""
     responsestring = responsestring + """</div>   
             <form action="/">
-                <input type="submit" value="Analyze another picture">
+                <input type="submit" class="btn btn-primary" value="Analyze another picture">
             </form>        
         </body>
         </html>
@@ -125,7 +125,9 @@ def form(request):
                 <form action="/analyze" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="fileupload">Select image to upload:</label>
-                        <input class="form-control" id="fileupload" type="file" name="file"><br>
+                        <div class="custom-file">
+                            <input class="custom-file-input" id="fileupload" type="file" name="file">
+                        </div>
                         <input class="btn btn-primary" type="submit" value="Upload and Analyze Image">
                     </div>
                 </form>
